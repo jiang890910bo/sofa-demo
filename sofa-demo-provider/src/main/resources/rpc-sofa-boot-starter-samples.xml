@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sofa="http://sofastack.io/schema/sofaboot"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://sofastack.io/schema/sofaboot   http://sofastack.io/schema/sofaboot.xsd"
+       default-autowire="byName">
+
+    <!--指定实现类，并命名id，方便调用-->
+    <bean id="helloSyncServiceImpl" class="com.cjb.impl.HelloSyncServiceImpl"/>
+
+    <!--指定实现类，并命名id，方便调用-->
+    <bean id="worldSyncServiceImpl" class="com.cjb.impl.WorldSyncServiceImpl"/>
+    <bean id="testSyncServiceImpl" class="com.cjb.impl.TestSyncServerImpl"/>
+
+    <!--指定一个接口的实现者, 其中service表示是接口提供者-->
+    <sofa:service ref="helloSyncServiceImpl" interface="com.cjb.interfaces.HelloSyncService">
+        <sofa:binding.bolt/>
+    </sofa:service>
+    <sofa:service ref="testSyncServiceImpl" interface="com.cjb.interfaces.TestSyncServer">
+        <sofa:binding.bolt/>
+    </sofa:service>
+    <!--指定一个接口的实现者, 其中service表示是接口提供者-->
+<!--    <sofa:service ref="worldSyncServiceImpl" interface="com.cjb.interfaces.HelloSyncService">-->
+<!--        <sofa:binding.bolt/>-->
+<!--    </sofa:service>-->
+</beans>
